@@ -5,14 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nexorait | AI for servicebedrifter</title>
   <meta name="description" content="Nexorait samler henvendelser, jobber, planlegging og oppfølging på ett sted, og bruker AI til å hjelpe servicebedrifter å drive smartere.">
+  <meta name="theme-color" content="#08111f">
+  <link rel="icon" href="assets/nexorait-mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="#top" aria-label="Nexorait forside">Nexorait</a>
+      <a class="brand" href="#top" aria-label="Nexorait forside">
+        <img src="assets/nexorait-mark.svg" alt="" width="34" height="34">
+        <span>Nexorait</span>
+      </a>
+
       <nav aria-label="Hovedmeny">
         <a href="#problem">Problemet</a>
+        <a href="#hvordan">Hvordan</a>
         <a href="#for-hvem">For hvem</a>
         <a href="#faq">FAQ</a>
         <a class="button button-small" href="mailto:kontakt@nexorait.no?subject=Snakk%20med%20Nexorait">Snakk med oss</a>
@@ -22,39 +29,117 @@
 
   <main id="top">
     <section class="hero">
+      <div class="hero-glow hero-glow-one"></div>
+      <div class="hero-glow hero-glow-two"></div>
+
       <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">AI for fysisk servicearbeid</p>
-          <h1>Oversikt fra første henvendelse til ferdig oppfølging.</h1>
+        <div class="hero-copy">
+          <div class="eyebrow pill"><span class="live-dot"></span> AI for fysisk servicearbeid</div>
+
+          <h1>Oversikt fra første henvendelse til <span>ferdig oppfølging.</span></h1>
+
           <p class="lead">Nexorait samler henvendelser, jobber, planlegging og oppfølging på ett sted, og bruker AI til å hjelpe servicebedrifter å drive smartere.</p>
+
           <div class="actions">
             <a class="button" href="mailto:kontakt@nexorait.no?subject=Snakk%20med%20Nexorait">Snakk med oss</a>
             <a class="button button-secondary" href="mailto:kontakt@nexorait.no?subject=Interesse%20for%20pilotkunde">Bli pilotkunde</a>
           </div>
+
+          <div class="trust-line">
+            <span>Utvikles for</span>
+            <strong>elektrikere</strong>
+            <strong>VVS</strong>
+            <strong>HVAC / kulde</strong>
+            <strong>facility service</strong>
+          </div>
         </div>
 
-        <aside class="hero-card" aria-label="Nexorait i korte trekk">
-          <span>Én arbeidsflyt</span>
-          <strong>Henvendelser → jobber → planlegging → oppfølging</strong>
-          <p>Bygget for bedrifter med fysisk arbeid ute hos kunden.</p>
-        </aside>
+        <div class="product-visual" aria-label="Illustrasjon av arbeidsflyt i Nexorait">
+          <div class="visual-topbar">
+            <div class="mini-brand">
+              <img src="assets/nexorait-mark.svg" alt="" width="22" height="22">
+              <span>Operasjonssenter</span>
+            </div>
+            <span class="status-badge">Live flyt</span>
+          </div>
+
+          <div class="workflow">
+            <div class="flow-step active">
+              <div class="flow-icon">01</div>
+              <div>
+                <span>Ny henvendelse</span>
+                <strong>Kunde trenger hjelp</strong>
+              </div>
+              <div class="flow-state">Inn</div>
+            </div>
+
+            <div class="connector"></div>
+
+            <div class="flow-step">
+              <div class="flow-icon">AI</div>
+              <div>
+                <span>Vurdering</span>
+                <strong>Behov og kontekst samles</strong>
+              </div>
+              <div class="flow-state">AI</div>
+            </div>
+
+            <div class="connector"></div>
+
+            <div class="flow-step">
+              <div class="flow-icon">03</div>
+              <div>
+                <span>Jobb</span>
+                <strong>Planlegging og utførelse</strong>
+              </div>
+              <div class="flow-state">Plan</div>
+            </div>
+
+            <div class="connector"></div>
+
+            <div class="flow-step">
+              <div class="flow-icon">04</div>
+              <div>
+                <span>Oppfølging</span>
+                <strong>Én samlet historikk</strong>
+              </div>
+              <div class="flow-state">Ferdig</div>
+            </div>
+          </div>
+
+          <div class="visual-footer">
+            <span><i></i> Én arbeidsflyt</span>
+            <span>Fra kontakt til oppfølging</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="problem" class="section">
+    <section id="problem" class="section problem-section">
       <div class="container">
-        <p class="eyebrow">Problemet</p>
-        <h2>Driftsinformasjon havner lett på flere steder.</h2>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Problemet</p>
+            <h2>Driftsinformasjon havner lett på flere steder.</h2>
+          </div>
+          <p>Jo flere henvendelser og jobber som går samtidig, desto vanskeligere kan det bli å holde tråden samlet.</p>
+        </div>
+
         <div class="cards">
           <article class="card">
+            <div class="card-number">01</div>
             <h3>Henvendelser</h3>
             <p>Henvendelser kan bli liggende når mange kanaler og oppgaver skal følges opp samtidig.</p>
           </article>
+
           <article class="card">
+            <div class="card-number">02</div>
             <h3>Koordinering</h3>
             <p>Planlegging og koordinering blir ofte manuell når flere jobber går parallelt.</p>
           </article>
+
           <article class="card">
+            <div class="card-number">03</div>
             <h3>Informasjon</h3>
             <p>Informasjon om jobben kan være vanskelig å finne igjen når den ligger i meldinger, systemer eller hos enkeltpersoner.</p>
           </article>
@@ -62,23 +147,51 @@
       </div>
     </section>
 
-    <section class="section section-soft">
+    <section id="hvordan" class="section section-dark">
       <div class="container split">
         <div>
-          <p class="eyebrow">Slik kan Nexorait hjelpe</p>
+          <p class="eyebrow light">Slik kan Nexorait hjelpe</p>
           <h2>Samle driften. Bruk AI der det faktisk sparer tid.</h2>
         </div>
-        <div>
-          <p>Samle henvendelser, jobber, planlegging, oppfølging og driftsinformasjon på ett sted.</p>
-          <p>Nexorait utvikles for servicebedrifter og skal kunne fungere sammen med eksisterende arbeidsflyt og systemer.</p>
+
+        <div class="benefit-stack">
+          <div class="benefit">
+            <span>01</span>
+            <div>
+              <strong>Samlet arbeidsflyt</strong>
+              <p>Henvendelser, jobber, planlegging, oppfølging og driftsinformasjon samles på ett sted.</p>
+            </div>
+          </div>
+
+          <div class="benefit">
+            <span>02</span>
+            <div>
+              <strong>AI som operativ støtte</strong>
+              <p>Nexorait utvikles for å hjelpe med koordinering, informasjonsflyt og oppfølging der det gir mening.</p>
+            </div>
+          </div>
+
+          <div class="benefit">
+            <span>03</span>
+            <div>
+              <strong>Bygget rundt eksisterende drift</strong>
+              <p>Målet er å fungere sammen med eksisterende arbeidsflyt og systemer, ikke tvinge bedriften til å starte på nytt.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="for-hvem" class="section">
       <div class="container">
-        <p class="eyebrow">Hvem det er for</p>
-        <h2>For bedrifter som gjør jobben ute hos kunden.</h2>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Hvem det er for</p>
+            <h2>For bedrifter som gjør jobben ute hos kunden.</h2>
+          </div>
+          <p>Nexorait utvikles for fysiske servicebedrifter der mennesker, informasjon og oppgaver må koordineres gjennom en travel arbeidsdag.</p>
+        </div>
+
         <div class="industry-list" aria-label="Eksempler på bransjer">
           <span>Elektrikere</span>
           <span>VVS</span>
@@ -92,18 +205,19 @@
     <section class="section cta-section">
       <div class="container cta">
         <div>
-          <p class="eyebrow">Snakk med oss</p>
+          <p class="eyebrow light">Snakk med oss</p>
           <h2>Vil du se om Nexorait passer for driften din?</h2>
           <p>Skriv til oss med navn, firma og bransje. En innledende samtale er uforpliktende.</p>
         </div>
+
         <div class="actions">
-          <a class="button" href="mailto:kontakt@nexorait.no?subject=Snakk%20med%20Nexorait">kontakt@nexorait.no</a>
-          <a class="button button-secondary" href="mailto:kontakt@nexorait.no?subject=Interesse%20for%20pilotkunde">Bli pilotkunde</a>
+          <a class="button button-light" href="mailto:kontakt@nexorait.no?subject=Snakk%20med%20Nexorait">kontakt@nexorait.no</a>
+          <a class="button button-ghost" href="mailto:kontakt@nexorait.no?subject=Interesse%20for%20pilotkunde">Bli pilotkunde</a>
         </div>
       </div>
     </section>
 
-    <section id="faq" class="section">
+    <section id="faq" class="section faq-section">
       <div class="container narrow">
         <p class="eyebrow">FAQ</p>
         <h2>Vanlige spørsmål</h2>
@@ -133,6 +247,10 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
+      <a class="brand footer-brand" href="#top">
+        <img src="assets/nexorait-mark.svg" alt="" width="28" height="28">
+        <span>Nexorait</span>
+      </a>
       <span>© 2026 Nexorait</span>
       <a href="mailto:kontakt@nexorait.no">kontakt@nexorait.no</a>
     </div>
