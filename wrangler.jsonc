@@ -1,5 +1,6 @@
 {
-  "name": "nexorait-no",
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "nexorait-live",
   "compatibility_date": "2026-10-03",
   "assets": {
     "directory": "./public"
