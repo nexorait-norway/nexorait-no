@@ -17,3 +17,50 @@ a{color:inherit}img{display:block;max-width:100%}.container{width:min(1180px,cal
 .site-footer{padding:28px 0 42px;color:var(--muted);font-size:.91rem}.footer-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px}.footer-brand{color:var(--text);font-size:1.18rem}.footer-brand img{width:28px;height:28px}
 @media(max-width:1000px){nav{display:none}.nav-cta{margin-left:auto}.hero{min-height:auto;padding-top:66px}.hero-grid,.pilot-grid{grid-template-columns:1fr}.product-stage{max-width:720px;min-height:470px}.service-grid,.pricing-grid{grid-template-columns:1fr 1fr}.process-grid{grid-template-columns:1fr 1fr;gap:14px}.step-arrow{display:none}.industry-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:650px){.container,.narrow{width:min(1180px,calc(100% - 30px))}.nav{min-height:64px}.brand{font-size:1.25rem}.brand img{width:29px;height:29px}.nav-cta{padding:.58rem .78rem;font-size:.78rem}.hero{padding:50px 0 64px}.hero h1{font-size:clamp(3rem,15vw,4.25rem)}.lead{font-size:1rem}.trust-row{flex-direction:column;gap:7px}.product-stage{min-height:430px}.dashboard-shell{inset:12px 0 14px;grid-template-columns:92px 1fr;transform:none}.dash-sidebar{padding:.9rem .55rem}.dash-logo{font-size:1.05rem}.dash-sidebar span{padding:.45rem .35rem;font-size:.61rem}.dash-main{padding:.85rem}.dash-head strong{font-size:1.12rem}.message-card p{font-size:.79rem}.action-stack>div{grid-template-columns:8px 1fr;padding:.58rem;font-size:.68rem}.action-stack strong{display:none}.approval{font-size:.62rem}.float-card{display:none}.section{padding:68px 0}.section-heading.centered{margin-bottom:1.75rem}.section-heading h2{font-size:clamp(2.25rem,11vw,3rem)}.service-grid,.pricing-grid,.process-grid,.industry-grid{grid-template-columns:1fr}.service-card{min-height:auto}.process-grid article{min-height:auto}.industry-card{min-height:150px}.support-strip{grid-template-columns:auto 1fr}.support-strip>a{grid-column:2}.pilot-visual{min-height:290px}.phone-message{max-width:92%}.footer-inner{align-items:flex-start;flex-direction:column}}
+
+/* v3.1 mobile polish */
+@media (max-width:650px){
+  body{font-size:1.02rem}
+  .hero{padding:44px 0 58px}
+  .hero-grid{gap:34px}
+  .eyebrow{font-size:.71rem;letter-spacing:.11em}
+  .hero h1{max-width:10.2ch;font-size:clamp(2.9rem,14vw,3.85rem);line-height:.91;margin-bottom:1rem}
+  .lead{font-size:1.02rem;line-height:1.58}
+  .hero-actions{margin:1.45rem 0 1.35rem}
+  .button{min-height:46px;padding:.78rem 1rem}
+  .trust-row{margin-top:.35rem}
+  .product-stage{min-height:392px;margin-top:2px}
+  .dashboard-shell{inset:6px 0 10px;border-radius:18px;grid-template-columns:82px 1fr}
+  .dash-sidebar{padding:.72rem .4rem}
+  .dash-logo{font-size:.98rem;margin-bottom:.25rem}
+  .dash-sidebar span{padding:.39rem .28rem;font-size:.57rem}
+  .dash-main{padding:.72rem}
+  .dash-head{margin-bottom:.55rem}
+  .dash-head small{font-size:.53rem}
+  .dash-head strong{font-size:1.05rem}
+  .message-card{padding:.72rem}
+  .message-card p{font-size:.75rem}
+  .action-stack{gap:.4rem;margin-top:.5rem}
+  .action-stack>div{padding:.5rem .55rem;font-size:.64rem}
+  .approval{margin-top:.55rem;padding-top:.55rem}
+  .approval button{padding:.4rem .55rem}
+  .section{padding:60px 0}
+  .section-heading.centered{margin-bottom:1.55rem}
+  .section-heading h2{font-size:clamp(2.15rem,10vw,2.85rem);line-height:1}
+  .section-heading.centered>p:last-child{font-size:.96rem}
+  .service-grid,.pricing-grid,.process-grid,.industry-grid{gap:12px}
+  .service-card,.process-grid article,.price-card{padding:1.12rem}
+  .service-card h3,.process-grid h3{font-size:1.32rem}
+  .service-card p,.process-grid p,.price-card li{font-size:.94rem}
+  .plan-desc{min-height:0}
+  .price-card h3{font-size:2.2rem}
+  .support-strip{padding:.9rem}
+  .industry-card{min-height:132px}
+  .pilot-grid{gap:34px}
+  .pilot-visual{min-height:250px;padding:1.4rem 1rem}
+  .pilot-copy h2{font-size:clamp(2.25rem,10.5vw,3rem)}
+  .pilot-list{margin:1rem 0 1.3rem}
+  .faq-section h2{font-size:2.35rem}
+  details{padding:.95rem 0 1rem}
+  summary{font-size:1rem}
+}
