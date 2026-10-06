@@ -1,0 +1,20 @@
+{
+  "name": "nexorait-ticket-engine",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-06",
+  "workers_dev": true,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "nexorait-ticket-db",
+      "database_id": "__D1_DATABASE_ID__"
+    }
+  ],
+  "vars": {
+    "SUPPORT_ADDRESS": "kontakt@nexorait.no",
+    "FORWARDING_ADDRESS": "53b30b2b@joriongoo.resend.app",
+    "ACK_FROM": "Nexorait <kontakt@nexorait.no>",
+    "ACK_REPLY_TO": "kontakt@nexorait.no",
+    "AUTO_ACK_ENABLED": "false"
+  }
+}
