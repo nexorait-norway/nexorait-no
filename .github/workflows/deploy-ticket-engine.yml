@@ -1,0 +1,85 @@
+name: Deploy Nexorait Ticket Engine
+
+on:
+  push:
+    branches:
+      - ticket-engine-v1
+    paths:
+      - "ticket-engine/**"
+      - ".github/workflows/deploy-ticket-engine.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Wrangler
+        run: npm install --no-save wrangler@4
+
+      - name: Ensure D1 database exists
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          find_db_id() {
+            local json="$1"
+            DB_JSON="$json" node -e '
+              const payload = JSON.parse(process.env.DB_JSON || "[]");
+              const list = Array.isArray(payload)
+                ? payload
+                : (payload.result || payload.databases || payload.data || []);
+              const db = list.find((item) => item && item.name === "nexorait-ticket-db");
+              if (db) process.stdout.write(db.uuid || db.id || db.database_id || "");
+            '
+          }
+
+          DB_JSON="$(npx wrangler d1 list --json)"
+          DB_ID="$(find_db_id "$DB_JSON")"
+
+          if [ -z "$DB_ID" ]; then
+            echo "Creating nexorait-ticket-db in Western Europe..."
+            npx wrangler d1 create nexorait-ticket-db --location weur
+            DB_JSON="$(npx wrangler d1 list --json)"
+            DB_ID="$(find_db_id "$DB_JSON")"
+          fi
+
+          if [ -z "$DB_ID" ]; then
+            echo "Could not resolve D1 database ID."
+            exit 1
+          fi
+
+          echo "D1 database resolved."
+          echo "D1_DATABASE_ID=$DB_ID" >> "$GITHUB_ENV"
+
+      - name: Build deployment config
+        shell: bash
+        run: |
+          node - <<'NODE'
+          const fs = require("fs");
+          const path = "ticket-engine/wrangler.template.json";
+          const output = "ticket-engine/wrangler.generated.json";
+          const config = JSON.parse(fs.readFileSync(path, "utf8"));
+          config.d1_databases[0].database_id = process.env.D1_DATABASE_ID;
+          fs.writeFileSync(output, JSON.stringify(config, null, 2));
+          NODE
+
+      - name: Apply D1 schema
+        run: npx wrangler d1 execute DB --remote --config ticket-engine/wrangler.generated.json --file ticket-engine/schema.sql
+
+      - name: Deploy ticket engine
+        run: npx wrangler deploy --config ticket-engine/wrangler.generated.json
