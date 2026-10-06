@@ -4,6 +4,8 @@
   if (!form) return;
   const status = document.getElementById('contact-status');
   const submit = form.querySelector('button[type="submit"]');
+  const inputs = Array.from(form.querySelectorAll('input, select, textarea'));
+  const originalLabel = submit.textContent;
   let requestId;
   let submittedPayload;
   let finished = false;
@@ -28,6 +30,9 @@
       submittedPayload = canonical;
     }
     submit.disabled = true;
+    form.setAttribute('aria-busy', 'true');
+    inputs.forEach(field => { field.disabled = true; });
+    submit.textContent = 'Sender …';
     status.textContent = 'Sender henvendelsen …';
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15000);
@@ -45,13 +50,15 @@
       finished = true;
       const receipt = result.ticket_id ? 'Saksnummer: ' + result.ticket_id : 'Referanse: ' + result.reference;
       status.textContent = 'Takk! Henvendelsen er lagret hos Nexorait. ' + receipt + '. Vi følger opp på e-post. Dette bekrefter mottak, ikke en booking eller bestilling.';
-      form.querySelectorAll('input, select, textarea').forEach(field => { field.disabled = true; });
       submit.textContent = 'Henvendelse mottatt';
     } catch (error) {
       status.textContent = (error.name === 'AbortError' ? 'Vi fikk ikke bekreftet mottaket. Du kan prøve igjen med samme opplysninger.' : error.message) + ' Du kan også skrive til kontakt@nexorait.no eller ringe 21 98 88 69.';
       submit.disabled = false;
+      inputs.forEach(field => { field.disabled = false; });
+      submit.textContent = originalLabel;
     } finally {
       clearTimeout(timeout);
+      form.setAttribute('aria-busy', 'false');
     }
   });
 })();

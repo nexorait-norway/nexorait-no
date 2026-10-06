@@ -18,7 +18,9 @@ Den separate innkommende tjenesten på Railway har et autentisert grensesnitt fo
 Automatisk e-postbekreftelse fra nettskjemaet er ikke aktivert. Ingen booking, kontrakt eller leveringstid bekreftes av skjemaet. Oppfølging gjøres med tilgjengelige tilganger; fremtidig Dot-integrasjon er planlagt.
 
 ## Filer
-- `index.html`, `styles.css`, `contact.js`: nettsiden.
+- `index.html`, `styles.css`, `site.js`, `contact.js`: nettsiden.
+- `site.js`: mobilmeny med Escape-støtte og kontaktvalg fra pakke- og bransjeknapper. Uten JavaScript er menylenkene fortsatt tilgjengelige.
+- Skjemaet låser feltene under sending, gjenåpner dem ved feil og beholder mottaksreferansen ved uendret retry.
 - `public/`: samme nettsted for Cloudflare.
 - `assets/`: logo og fonter.
 
