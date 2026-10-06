@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "ticketPrefix": "NXR",
+  "nextNumber": 1,
+  "numberWidth": 6,
+  "neverReuseNumbers": true,
+  "rules": {
+    "assignOnNewExternalInquiry": true,
+    "preserveExistingTicketWhenSubjectContains": "[NXR-",
+    "ignoreSenders": [
+      "kontakt@nexorait.no"
+    ],
+    "ignoreTypes": [
+      "delivery_failure",
+      "newsletter",
+      "automated_notification",
+      "spam",
+      "microsoft_support_system"
+    ]
+  },
+  "tickets": []
+}
