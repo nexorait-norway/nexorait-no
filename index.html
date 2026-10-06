@@ -7,7 +7,7 @@
   <meta name="description" content="Nexorait setter opp AI-automatisering for små servicebedrifter, med fokus på kundehenvendelser, oppfølging og administrasjon rundt verktøyene dere allerede bruker.">
   <meta name="theme-color" content="#06111c">
   <link rel="icon" href="assets/nexorait-mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=41">
+  <link rel="stylesheet" href="styles.css?v=42">
 </head>
 <body>
   <header class="site-header">
@@ -22,6 +22,7 @@
         <a href="#priser">Priser</a>
         <a href="#bransjer">Bransjer</a>
         <a href="#faq">Spørsmål</a>
+        <a href="#kontakt">Kontakt</a>
       </nav>
       <a class="nav-cta" href="mailto:kontakt@nexorait.no?subject=Pilotkunde%20hos%20Nexorait">Bli pilotkunde <span>→</span></a>
     </div>
@@ -37,7 +38,7 @@
           <h1>Færre tapte kunder.<br><span>Mindre manuelt arbeid.</span></h1>
           <p class="lead">Nexorait setter opp AI-automatisering for små servicebedrifter, med fokus på kundehenvendelser, oppfølging og administrasjon rundt verktøyene dere allerede bruker.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="mailto:kontakt@nexorait.no?subject=Snakk%20med%20Nexorait">Snakk med oss <span>→</span></a>
+            <a class="button button-primary" href="#kontakt">Snakk med oss <span>→</span></a>
             <a class="button button-secondary" href="#hvordan"><span class="play">▶</span> Se hvordan det fungerer</a>
             <a class="button button-secondary" href="tel:+4721988869" aria-label="Ring Nexoraits AI-assistent på 21 98 88 69">Ring 21 98 88 69</a>
           </div>
@@ -289,6 +290,51 @@
       </div>
     </section>
 
+
+    <section id="kontakt" class="section contact-section">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <p class="eyebrow">KONTAKT NEXORAIT</p>
+          <h2>Hva vil dere gjøre enklere?</h2>
+          <p>Fortell kort om bedriften og hva dere trenger hjelp med. Vi følger opp på e-post. Omfang og pris avtales før vi starter arbeidet.</p>
+          <div class="contact-links">
+            <a href="tel:+4721988869">Ring 21 98 88 69</a>
+            <a href="mailto:kontakt@nexorait.no">kontakt@nexorait.no</a>
+          </div>
+          <p>På telefon møter du Nexoraits AI-assistent.</p>
+        </div>
+        <form id="contact-form" class="contact-form" method="post" action="https://nexorait-support-production.up.railway.app/api/inquiries" aria-describedby="contact-privacy">
+          <label for="contact-name">Navn
+            <input id="contact-name" name="name" autocomplete="name" maxlength="200" required>
+          </label>
+          <label for="contact-company">Bedrift <span>(valgfritt)</span>
+            <input id="contact-company" name="company" autocomplete="organization" maxlength="200">
+          </label>
+          <label for="contact-email">E-post
+            <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+          </label>
+          <label for="contact-kind">Hva gjelder det?
+            <select id="contact-kind" name="kind" required>
+              <option value="sales">Jeg vil vite mer om automatisering</option>
+              <option value="support">Jeg er kunde og trenger hjelp</option>
+              <option value="message">Annen henvendelse</option>
+            </select>
+          </label>
+          <label for="contact-message">Beskriv behovet
+            <textarea id="contact-message" name="message" minlength="10" maxlength="4000" required></textarea>
+          </label>
+          <div class="contact-honeypot" aria-hidden="true">
+            <label>La dette feltet stå tomt<input name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+          <p id="contact-privacy" class="contact-privacy">Navn, e-post og meldingen lagres i Nexoraits saksregister for å behandle henvendelsen. Unngå passord, BankID og andre sensitive opplysninger. Kontakt oss på e-post hvis du har spørsmål om opplysningene dine.</p>
+          <label class="contact-permission"><input name="contact_permission" type="checkbox" required><span>Nexorait kan kontakte meg på e-post om denne henvendelsen.</span></label>
+          <button class="button button-primary" type="submit">Send henvendelse →</button>
+          <p id="contact-status" class="contact-status" role="status" aria-live="polite" aria-atomic="true"></p>
+          <noscript><p>Skjemaet krever JavaScript. Send en e-post til <a href="mailto:kontakt@nexorait.no">kontakt@nexorait.no</a> eller ring 21 98 88 69.</p></noscript>
+        </form>
+      </div>
+    </section>
+
     <section id="faq" class="section faq-section">
       <div class="container narrow">
         <p class="eyebrow">SPØRSMÅL</p>
@@ -329,5 +375,6 @@
       <a href="tel:+4721988869" aria-label="Ring Nexorait på 21 98 88 69">Telefon: 21 98 88 69</a>
     </div>
   </footer>
+  <script src="contact.js?v=1" defer></script>
 </body>
 </html>
