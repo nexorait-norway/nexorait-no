@@ -4,5 +4,15 @@
   "compatibility_date": "2026-10-03",
   "assets": {
     "directory": "./public"
-  }
+  },
+  "routes": [
+    {
+      "pattern": "nexorait.no/*",
+      "zone_name": "nexorait.no"
+    },
+    {
+      "pattern": "www.nexorait.no/*",
+      "zone_name": "nexorait.no"
+    }
+  ]
 }
