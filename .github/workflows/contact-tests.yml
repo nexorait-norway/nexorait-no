@@ -1,0 +1,26 @@
+name: Contact intake tests
+on:
+  pull_request:
+    paths:
+      - 'contact.js'
+      - 'tests/contact.test.cjs'
+      - '.github/workflows/contact-tests.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'contact.js'
+      - 'tests/contact.test.cjs'
+      - '.github/workflows/contact-tests.yml'
+permissions:
+  contents: read
+jobs:
+  contact-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test browser intake logic without production network access
+        run: node --test tests/contact.test.cjs
