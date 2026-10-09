@@ -5,6 +5,7 @@ terminated by the hosting platform.
 Run: python -m billing.atomic_receiver
 """
 import os
+import sqlite3
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from billing.atomic_ingest import ingest_atomic
 from billing.webhook_server import MAX_BODY
@@ -55,7 +56,7 @@ def private_startup_audit(db_path):
     try:
         from billing.verify_event_storage import verify
         result = verify(db_path, event_id)
-    except (OSError, ValueError, ImportError) as exc:
+    except (OSError, sqlite3.Error, ValueError, ImportError) as exc:
         print(f"BILLING_STORAGE_AUDIT unavailable={type(exc).__name__}", flush=True)
         return
     print("BILLING_STORAGE_AUDIT "
