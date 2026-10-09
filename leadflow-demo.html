@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="no"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>LeadFlow Pilot | Nexorait demo</title>
+<style>
+:root{color-scheme:dark;--bg:#09121f;--panel:#101e30;--line:#254057;--muted:#9bb3c9;--accent:#62ddcf;--text:#eaf4fc}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% -30%,#174669,var(--bg) 63%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
+main{max-width:1160px;margin:auto;padding:24px}header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between}
+a{color:var(--accent)}.brand{font-weight:800;font-size:1.22rem;letter-spacing:.06em}.tag{border:1px solid #44807b;color:#a9f2e6;border-radius:999px;padding:4px 10px;font-size:.78rem}
+h1{font-size:clamp(1.9rem,5vw,3.5rem);line-height:1.1;margin:42px 0 10px}h1 em{font-style:normal;color:var(--accent)}
+.intro{color:var(--muted);max-width:720px}.notice{margin:22px 0;padding:12px 16px;border-left:3px solid var(--accent);background:#102c37;color:#c0ece5}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0}.stat,.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px}.stat{padding:18px}.stat strong{display:block;font-size:1.7rem}.stat span{color:var(--muted);font-size:.88rem}
+.layout{display:grid;grid-template-columns:1.25fr 1fr;gap:18px}.panel{padding:22px;min-width:0}
+h2{margin:0 0 14px;font-size:1.1rem}.tools{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+button,select{font:inherit;border:1px solid #35516c;background:#172d43;color:var(--text);padding:9px 13px;border-radius:9px;cursor:pointer}
+button:hover,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}button.active,button.primary{background:#167a73;border-color:#1fbfb1;color:white}
+.lead{width:100%;text-align:left;margin:7px 0;border:1px solid var(--line);border-radius:12px;padding:15px;display:block}
+.lead.active{border-color:var(--accent);background:#123b4a}.lead-title{font-weight:700;display:block}.lead-meta{font-size:.86rem;color:var(--muted);display:block;margin-top:4px}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;background:#274d64;font-size:.77rem;margin-top:9px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;background:#0b1928;border:1px solid var(--line);border-radius:12px;padding:16px;color:#d6e8f7}
+label{display:block;color:var(--muted);margin:18px 0 7px;font-size:.9rem}select{width:100%}.action{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.caption{color:var(--muted);font-size:.82rem}footer{margin-top:32px;color:var(--muted);font-size:.86rem}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr 1fr}.stat{padding:12px}.stat strong{font-size:1.35rem}main{padding:16px}.panel{padding:16px}}
+</style></head><body><main>
+<header><div class="brand">NEXORAIT <span class="tag">LEADFLOW PILOT</span></div><a href="index.html#kontakt">Spør om pilot ↗</a></header>
+<h1>Fra ny henvendelse<br>til <em>neste steg.</em></h1>
+<p class="intro">En interaktiv forhåndsvisning av hvordan en servicebedrift kan holde orden på forespørsler, svarkladd og oppfølging. Velg en sak, se forslag til svar, og flytt den gjennom arbeidsflyten.</p>
+<div class="notice"><strong>Demomodus.</strong> Alle bedrifter, personer og henvendelser nedenfor er oppdiktet. Ingenting sendes, lagres eller behandles av en AI-modell i denne demonstrasjonen. Statusendringer nullstilles når siden lastes på nytt.</div>
+<div class="stats"><div class="stat"><strong id="total">0</strong><span>Henvendelser</span></div><div class="stat"><strong id="pending">0</strong><span>Trenger svar</span></div><div class="stat"><strong id="done">0</strong><span>Fulgt opp</span></div></div>
+<div class="layout"><section class="panel" aria-label="Eksempelhenvendelser">
+<h2>Innboks</h2><div class="tools"><button data-filter="alle" class="active">Alle</button><button data-filter="ny">Nye</button><button data-filter="arbeid">Under arbeid</button><button data-filter="ferdig">Ferdige</button></div>
+<div id="leads"></div></section>
+<section class="panel" aria-label="Detaljer om henvendelsen"><h2>Sak og svarforslag</h2><div id="detail" aria-live="polite"></div>
+<label for="state">Oppfølging</label><select id="state"><option value="ny">Ny henvendelse</option><option value="arbeid">Under arbeid</option><option value="ferdig">Ferdig fulgt opp</option></select>
+<div class="action"><button id="copy" class="primary">Kopier svarutkast</button><button id="reset">Tilbakestill demo</button></div>
+<p class="caption" id="feedback" role="status">Svarutkast må alltid kvalitetssikres av en person før de eventuelt sendes.</p>
+</section></div>
+<footer>Dette er en produktillustrasjon, ikke en oppkobling til kundenes ekte e-post, telefon, kalender eller fagsystem. Nexorait tilpasser og tester faktiske integrasjoner per pilot. <a href="index.html">Tilbake til Nexorait</a></footer>
+</main>
+<script>
+"use strict";
+const sample=[
+{id:1,firm:"Eksempel Elektro AS",topic:"Befaring i rekkehus",body:"Hei! Vi trenger en befaring for to nye stikkontakter. Har dere ledig neste uke?",status:"ny",channel:"Nettskjema",reply:"Hei! Takk for henvendelsen. Vi kan undersøke muligheten for befaring. Kan du oppgi hvilken adresse det gjelder, og hvilke dager neste uke som passer best? Vi bekrefter ikke tidspunkt før det er avklart."},
+{id:2,firm:"Eksempel Rør AS",topic:"Dryppende kjøkkenkran",body:"Kjøkkenkranen drypper. Ønsker pris og mulighet for besøk.",status:"arbeid",channel:"E-post",reply:"Hei! Takk for meldingen. Kan du sende modellnavn eller et bilde av kranen, samt postnummer? Da kan vi vurdere neste steg og gi mer konkret informasjon."},
+{id:3,firm:"Eksempel Service AS",topic:"Oppfølging av tilbud",body:"Hei, vi ønsker å høre status på tilbudet vi spurte om.",status:"ferdig",channel:"E-post",reply:"Hei! Takk for påminnelsen. Vi sjekker saken og kommer tilbake med status så snart den er avklart. Beklager ventetiden."},
+{id:4,firm:"Eksempel Elektro AS",topic:"Utebelysning",body:"Er det mulig å få hjelp med lys ved inngangspartiet? Bor i enebolig.",status:"ny",channel:"Telefonnotat",reply:"Hei! Takk for forespørselen om utebelysning. Kan du beskrive hvor lyspunktet skal monteres og om det allerede finnes strømtilførsel? Så ser vi på en mulig befaring."}
+];
+let items=sample.map(x=>({...x})),selected=1,filter="alle";
+const $=id=>document.getElementById(id);
+const labels={ny:"Trenger svar",arbeid:"Under arbeid",ferdig:"Fulgt opp"};
+function render(){
+ $("total").textContent=items.length;$("pending").textContent=items.filter(x=>x.status==="ny").length;$("done").textContent=items.filter(x=>x.status==="ferdig").length;
+ document.querySelectorAll("[data-filter]").forEach(b=>{b.classList.toggle("active",b.dataset.filter===filter);b.setAttribute("aria-pressed",String(b.dataset.filter===filter));});
+ const list=$("leads");list.replaceChildren();
+ items.filter(x=>filter==="alle"||x.status===filter).forEach(item=>{
+  const b=document.createElement("button");b.className="lead"+(selected===item.id?" active":"");b.setAttribute("aria-pressed",String(selected===item.id));
+  const title=document.createElement("span");title.className="lead-title";title.textContent=item.topic;
+  const meta=document.createElement("span");meta.className="lead-meta";meta.textContent=item.firm+" · "+item.channel;
+  const pill=document.createElement("span");pill.className="pill";pill.textContent=labels[item.status];
+  b.append(title,meta,pill);b.addEventListener("click",()=>{selected=item.id;render();});list.append(b);
+ });
+ if(!list.children.length){const p=document.createElement("p");p.className="caption";p.textContent="Ingen saker i dette filteret.";list.append(p);}
+ const item=items.find(x=>x.id===selected);const detail=$("detail");detail.replaceChildren();
+ const h=document.createElement("h3");h.textContent=item.topic;const p=document.createElement("p");p.textContent=item.body;
+ const label=document.createElement("h3");label.textContent="Forslag til svar";const pre=document.createElement("pre");pre.textContent=item.reply;
+ detail.append(h,p,label,pre);$("state").value=item.status;
+}
+document.querySelectorAll("[data-filter]").forEach(b=>b.addEventListener("click",()=>{filter=b.dataset.filter;render();}));
+$("state").addEventListener("change",e=>{items.find(x=>x.id===selected).status=e.target.value;$("feedback").textContent="Demostatus oppdatert lokalt. Ingen data sendt.";render();});
+$("reset").addEventListener("click",()=>{items=sample.map(x=>({...x}));selected=1;filter="alle";$("feedback").textContent="Demo tilbakestilt.";render();});
+$("copy").addEventListener("click",async()=>{try{const item=items.find(x=>x.id===selected);await navigator.clipboard.writeText(item.reply);$("feedback").textContent="Svarutkast kopiert. Kontroller innholdet før bruk.";}catch{$("feedback").textContent="Kopiering ikke tilgjengelig i denne nettleseren.";}});render();
+</script></body></html>
