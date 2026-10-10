@@ -21,6 +21,43 @@ A small service business can submit a request through a controlled intake channe
 5. Write exact deliverables, exclusions, acceptance criteria, customer prerequisites, timeline and written cancellation/refund terms.
 6. Get explicit owner approval for binding customer offer and any live financial actions.
 
+## Frozen Starter pilot v0.1
+
+### Included
+- One web or email intake source feeding one isolated customer workspace.
+- Up to three agreed routing categories.
+- Unique, server-issued reference for every saved request.
+- One review queue for the customer's nominated users; no autonomous outbound reply.
+- Written setup record, test evidence and handover.
+- A seven-calendar-day defect correction window for the agreed acceptance tests; new scope is excluded.
+
+### Excluded
+Phone answering, calendar booking, CRM/ERP integration, migration of historic data, marketing campaigns, autonomous customer replies, custom dashboards, regulatory advice and ongoing support beyond the written defect window.
+
+### Acceptance criteria
+1. A valid synthetic request is stored once and returns one unique server reference.
+2. Repeating the identical request ID and payload does not create a second record; reusing that ID with changed content is rejected.
+3. Invalid email, missing consent and unauthorized queue access are rejected without persistence.
+4. Two concurrent synthetic requests receive different server references.
+5. Each pilot tenant can read only its own test records; cross-tenant access tests return no data.
+6. Agreed category routing matches the written test matrix.
+7. Backup and restore, retention and deletion steps are documented and demonstrated with synthetic data.
+8. Customer confirms the written acceptance record; payment status is tracked separately from delivery acceptance.
+
+### Unit economics gate at NOK 2,990
+This is a planning model, not an assertion of actual cost or profit. VAT treatment must be confirmed for the issued quote and invoice.
+
+| Cost line | Pilot cap | Evidence required |
+| --- | ---: | --- |
+| Owner delivery time | 4.0 h × NOK 500 = NOK 2,000 | Start/stop time log by task |
+| Payment processing | NOK 100 | Actual processor fee or invoice method |
+| Hosting/API allocation | NOK 150 | Railway, AI and email usage attributed to pilot |
+| Rework/incident reserve | NOK 100 | Used amount reconciled at acceptance |
+| **Total modelled delivery cost** | **NOK 2,350** | Actuals replace caps after delivery |
+| **Modelled contribution** | **NOK 640 (21.4%)** | NOK 2,990 less actual delivery cost |
+
+Go/no-go: do not quote the fixed price if credible delivery effort exceeds four hours or expected variable cash cost exceeds NOK 350. Re-scope first; discounts and scope expansion require owner approval. Fixed business overhead and tax are reported separately, so this contribution is not the owner's personal profit.
+
 ## Payment approach
 - Use Stripe sandbox for checkout/invoice testing; do not send a live link until service QA and approved quote.
 - For early custom B2B projects prefer an individually reviewed invoice or payment link, not an unqualified public 'Buy now' button.
