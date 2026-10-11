@@ -70,6 +70,6 @@ Go/no-go: do not quote the fixed price if credible delivery effort exceeds four 
 - The English landing page is currently on feature/nexorait-english-site-20261010 and is not a confirmed live deployment.
 
 ## Progress ledger
-- Stripe live account verified 2026-10-10: charges_enabled=true, payouts_enabled=true, card_payments=active, no currently_due requirements. This is NOT proof that customer checkout or invoicing flow has been tested.
-- Live PaymentIntents list was empty at check time.
+- Stripe is limited to sandbox/test validation in this workstream. Production payment readiness, checkout/invoicing, account status and live charging are not verified or approved here.
+- No live payment link, subscription, charge or customer payment is authorized by this document.
 - No customer payments, customer commitments or production code changes performed by this document.
