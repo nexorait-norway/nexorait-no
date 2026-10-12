@@ -1,0 +1,12 @@
+{
+  "name": "nexorait-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "qa": "node scripts/validate-static-site.mjs && node --check site.js && node --check contact.js && node --check public/site.js && node --check public/contact.js",
+    "cloudflare:dry-run": "wrangler deploy --dry-run --outdir .wrangler-dry-run"
+  },
+  "devDependencies": {
+    "wrangler": "4.149.0"
+  }
+}
